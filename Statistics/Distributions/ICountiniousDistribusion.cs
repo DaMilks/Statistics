@@ -1,5 +1,8 @@
 ﻿namespace Statistics.Distributions
 {
+    /// <summary>
+    /// Countinious Probability Distribution.
+    /// </summary>
     public interface ICountiniousDistribusion : IDistribution
     {
         /// <summary>
@@ -8,7 +11,7 @@
         double Mode { get; }
         /// <summary>
         /// Gets the smallest element which can be maked
-        /// </summary
+        /// </summary>
         double Minimum { get; }
         /// <summary>
         /// Gets the largest element which can be maked
@@ -21,7 +24,7 @@
         /// <returns>the density at <paramref name="x"/>.</returns>
         double Density(double x);
         /// <summary>
-        /// Draws a random sample from the distribution.
+        /// Makes a random sample from the distribution.
         /// </summary>
         /// <returns>a sample from the distribution.</returns>
         double MakeSample();

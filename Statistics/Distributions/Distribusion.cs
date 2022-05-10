@@ -7,7 +7,10 @@ namespace Statistics.Distributions
     /// </summary>
     public interface IDistribution
     {
-        Random random { get; }
+        /// <summary>
+        /// Gets the random number generator which is used to make random samples.
+        /// </summary>
+        Random Random { get; }
         /// <summary>
         /// Gets the mean of the distribution.
         /// </summary>
