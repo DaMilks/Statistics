@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Statistics</name>
+    </assembly>
+    <members>
+        <member name="M:Statistics.Distributions.ContiniousUniformDistribution.CumulativeDistribution(System.Double)">
+            <summary>
+            Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
+            </summary>
+            /// <param name="x">The location at which to compute the cumulative distribution function.</param>
+            <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
+        </member>
+        <member name="T:Statistics.Distributions.IDistribution">
+            <summary>
+            Probability Distribution.
+            </summary>
+        </member>
+        <member name="P:Statistics.Distributions.IDistribution.Mean">
+            <summary>
+            Gets the mean of the distribution.
+            </summary>
+        </member>
+        <member name="P:Statistics.Distributions.IDistribution.Variance">
+            <summary>
+            Gets the variance of the distribution.
+            </summary>
+        </member>
+        <member name="P:Statistics.Distributions.IDistribution.StdDev">
+            <summary>
+            Gets the standard deviation of the distribution.
+            </summary>
+        </member>
+        <member name="P:Statistics.Distributions.IDistribution.Median">
+            <summary>
+            Gets the median of the distribution.
+            </summary>
+        </member>
+        <member name="M:Statistics.Distributions.IDistribution.CumulativeDistribution(System.Double)">
+            <summary>
+            Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
+            </summary>
+            /// <param name="x">The location at which to compute the cumulative distribution function.</param>
+            <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
+        </member>
+        <member name="P:Statistics.Distributions.ICountiniousDistribusion.Mode">
+            <summary>
+            Gets the mode of the distribution.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Statistics.Distributions.ICountiniousDistribusion.Minimum" -->
+        <member name="P:Statistics.Distributions.ICountiniousDistribusion.Maximum">
+            <summary>
+            Gets the largest element which can be maked
+            </summary>
+        </member>
+        <member name="M:Statistics.Distributions.ICountiniousDistribusion.Density(System.Double)">
+            <summary>
+            Computes the probability density of the distribution (PDF)
+            </summary>
+            <param name="x">The location at which to compute the density.</param>
+            <returns>the density at <paramref name="x"/>.</returns>
+        </member>
+        <member name="M:Statistics.Distributions.ICountiniousDistribusion.MakeSample">
+            <summary>
+            Draws a random sample from the distribution.
+            </summary>
+            <returns>a sample from the distribution.</returns>
+        </member>
+    </members>
+</doc>

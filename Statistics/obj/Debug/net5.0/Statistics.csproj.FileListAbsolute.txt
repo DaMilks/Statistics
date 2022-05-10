@@ -1,0 +1,14 @@
+C:\Users\DaMilk\source\repos\Statistics\Statistics\bin\Debug\net5.0\Statistics.deps.json
+C:\Users\DaMilk\source\repos\Statistics\Statistics\bin\Debug\net5.0\Statistics.dll
+C:\Users\DaMilk\source\repos\Statistics\Statistics\bin\Debug\net5.0\Statistics.pdb
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.csproj.AssemblyReference.cache
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.AssemblyInfoInputs.cache
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.AssemblyInfo.cs
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.csproj.CoreCompileInputs.cache
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.dll
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\refint\Statistics.dll
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.pdb
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\ref\Statistics.dll
+C:\Users\DaMilk\source\repos\Statistics\Statistics\bin\Debug\net5.0\Statistics.xml
+C:\Users\DaMilk\source\repos\Statistics\Statistics\obj\Debug\net5.0\Statistics.xml
