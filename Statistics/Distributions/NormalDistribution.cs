@@ -1,45 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Statistics.Distributions
 {
     /// <summary>
-    /// Normal distribution.
+    /// Normal distribution(Gaussian distribution)
     /// </summary>
     public class NormalDistribution : ICountiniousDistribusion
     {
         private readonly double _sigma, _expected;
         private readonly Random _random;
+        private double NormalValue()
+        {
+            ICountiniousDistribusion d = new ContiniousUniformDistribution(-1, 1, _random);
+            double v, u = 0, s = 2;
+            while (s < 0 | s > 1)
+            {
+                v = d.MakeSample();
+                u = d.MakeSample();
+                s = u * u + v * v;
+            }
+            return u * Math.Sqrt((-2 * Math.Log(s)) / s);
+        }
+        /// <summary>
+        /// Initializes a new instance of the Normal with sigma=1, expected=0
+        /// </summary>
         public NormalDistribution()
         {
             _sigma = 1;
             _expected = 0;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Normal given sigma vlue and expected=0
+        /// </summary>
         public NormalDistribution(double sigma)
         {
             _sigma = sigma;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Normal with givaen sigma and expected values
+        /// </summary>
         public NormalDistribution(double sigma, double expected) : this(sigma)
         {
             _expected = expected;
         }
         /// <summary>
+        /// Initializes a new instance of the ContinuousUniform with given sigma and expected values and randomsourse
+        /// </summary>
+        public NormalDistribution(double sigma, double expected, Random random) : this(sigma, expected)
+        {
+            _random = random;
+        }
+
+        /// <summary>
         /// Gets the mode of the distribution.
         /// </summary>
-        public double Mode => throw new NotImplementedException();
+        public double Mode => _expected;
         /// <summary>
         /// Gets the smallest element which can be maked
         /// </summary>
-        public double Minimum => throw new NotImplementedException();
+        public double Minimum => double.NegativeInfinity;
         /// <summary>
         /// Gets the largest element which can be maked
         /// </summary>
-        public double Maximum => throw new NotImplementedException();
+        public double Maximum => double.PositiveInfinity;
         /// <summary>
         /// Gets the random number generator which is used to make random samples.
         /// </summary>
@@ -47,19 +70,19 @@ namespace Statistics.Distributions
         /// <summary>
         /// Gets the mean of the distribution.
         /// </summary>
-        public double Mean => throw new NotImplementedException();
+        public double Mean => _expected;
         /// <summary>
         /// Gets the variance of the distribution.
         /// </summary>
-        public double Variance => throw new NotImplementedException();
+        public double Variance => _sigma * _sigma;
         /// <summary>
         /// Gets the standard deviation of the distribution.
         /// </summary>
-        public double StdDev => throw new NotImplementedException();
+        public double StdDev => _sigma;
         /// <summary>
         /// Gets the median of the distribution.
         /// </summary>
-        public double Median => throw new NotImplementedException();
+        public double Median => _expected;
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>
@@ -68,6 +91,9 @@ namespace Statistics.Distributions
         public double CumulativeDistribution(double x)
         {
             throw new NotImplementedException();
+            //TODO:Implement a CDF function
+            //TODO:Implement a erf() function
+
         }
         /// <summary>
         /// Computes the probability density of the distribution (PDF)
@@ -76,7 +102,8 @@ namespace Statistics.Distributions
         /// <returns>the density at <paramref name="x"/>.</returns>
         public double Density(double x)
         {
-            throw new NotImplementedException();
+            double d = (x - _expected) / _sigma;
+            return Math.Exp(-0.5 * d * d) / (Math.Sqrt(2 * Math.PI) * _sigma);
         }
         /// <summary>
         /// Makes a random sample from Normal distribution.
@@ -84,7 +111,7 @@ namespace Statistics.Distributions
         /// <returns>a sample from Normal distribution.</returns>
         public double MakeSample()
         {
-            throw new NotImplementedException();
+            return _expected + _sigma * NormalValue();
         }
     }
 }
