@@ -9,7 +9,10 @@ namespace Statistics.Distributions
     {
         private readonly double _min, _max;
         private readonly Random _random;
-
+        private static bool IsValidParameters(double min, double max)
+        {
+            return min < max;
+        }
         /// <summary>
         /// Initializes a new instance of the ContinuousUniform with min=0, max=1
         /// </summary>
@@ -24,6 +27,8 @@ namespace Statistics.Distributions
         /// </summary>
         public ContiniousUniformDistribution(double min, double max)
         {
+            if(!IsValidParameters(min,max))
+                throw new ArgumentException("Invalid parametrization for the distribution.");
             _min = min;
             _max = max;
             _random = new();
