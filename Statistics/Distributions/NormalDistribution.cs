@@ -21,6 +21,10 @@ namespace Statistics.Distributions
             }
             return u * Math.Sqrt((-2 * Math.Log(s)) / s);
         }
+        private static bool IsValidParameters(double sigma, double expected)
+        {
+            return sigma > 0 && !double.IsNaN(expected);
+        }
         /// <summary>
         /// Initializes a new instance of the Normal with sigma=1, expected=0
         /// </summary>
@@ -28,20 +32,29 @@ namespace Statistics.Distributions
         {
             _sigma = 1;
             _expected = 0;
+            _random = new();
         }
         /// <summary>
         /// Initializes a new instance of the Normal given sigma vlue and expected=0
         /// </summary>
         public NormalDistribution(double sigma)
         {
+            if (!IsValidParameters(sigma, 0))
+                throw new ArgumentException("Invalid parametrization for the distribution.");
             _sigma = sigma;
+            _expected = 0;
+            _random = new();
         }
         /// <summary>
         /// Initializes a new instance of the Normal with givaen sigma and expected values
         /// </summary>
-        public NormalDistribution(double sigma, double expected) : this(sigma)
+        public NormalDistribution(double sigma, double expected)
         {
+            if (!IsValidParameters(sigma, expected))
+                throw new ArgumentException("Invalid parametrization for the distribution.");
+            _sigma = sigma;
             _expected = expected;
+            _random = new();
         }
         /// <summary>
         /// Initializes a new instance of the ContinuousUniform with given sigma and expected values and randomsourse
