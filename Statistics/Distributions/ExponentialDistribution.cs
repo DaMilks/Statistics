@@ -10,6 +10,10 @@ namespace Statistics.Distributions
     {
         private readonly double _rate;
         private readonly Random _random;
+        private static bool IsValidParameters(double rate)
+        {
+            return rate > 0;
+        }
         /// <summary>
         /// Initializes a new instance of the Exponential with rate(λ)=1
         /// </summary>
@@ -23,6 +27,8 @@ namespace Statistics.Distributions
         /// </summary>
         public ExponentialDistribution(double rate)
         {
+            if(!IsValidParameters(rate))
+                throw new ArgumentException("Invalid parametrization for the distribution.");
             _rate = rate;
             _random = new();
         }

@@ -9,6 +9,10 @@ namespace Statistics.Distributions
     {
         private readonly double _location, _scale;
         private readonly Random _random;
+        private static bool IsValidParameters(double location, double scale)
+        {
+            return scale > 0 && double.IsNaN(location);
+        }
         /// <summary>
         /// Initializes a new instance of the Cauchy class with the location(X0)=0 and the scale(γ)=1
         /// </summary>
@@ -20,6 +24,8 @@ namespace Statistics.Distributions
         /// </summary>
         public CauchyDistribustion(double location, double scale)
         {
+            if (!IsValidParameters(location, scale))
+                throw new ArgumentException("Invalid parametrization for the distribution.");
             _location = location;
             _scale = scale;
             _random = new();
