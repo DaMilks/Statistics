@@ -11,6 +11,16 @@ namespace Statistics.Distributions
         {
             return probabilities.Sum() == 1.0;
         }
+        private static double[] SearchCDF(double[] probabilities)
+        {
+            double[] CDF = new double[probabilities.Length];
+            CDF[0] = probabilities[0];
+            for (int i = 1; i < CDF.Length; i++)
+            {
+                CDF[i] += probabilities[i];
+            }
+            return CDF;
+        }
 
         public CategorialDistribution(int n)
         {
@@ -92,13 +102,7 @@ namespace Statistics.Distributions
         {
             get
             {
-                double[] CDF = new double[_probabilities.Length];
-                double sum = 0;
-                for (int i = 0; i < CDF.Length; i++)
-                {
-                    sum += _probabilities[i];
-                    CDF[i] = sum;
-                }
+                double[] CDF = SearchCDF(_probabilities);
                 for (int i = 1; i < CDF.Length; i++)
                 {
                     if (CDF[i - 1] < 0.5 && CDF[i] > 0.5)
@@ -112,8 +116,17 @@ namespace Statistics.Distributions
 
         public double CumulativeDistribution(double x)
         {
-            throw new NotImplementedException();
-            //TODO
+            if (x < 0)
+            {
+                return 0;
+            }
+
+            if (x >= _probabilities.Length)
+            {
+                return 1;
+            }
+            double[] CDF = SearchCDF(_probabilities);
+            return CDF[(int)Math.Floor(x)];
         }
 
         public int MakeSample()
