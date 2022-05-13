@@ -88,7 +88,27 @@ namespace Statistics.Distributions
         }
         public double StdDev => Math.Sqrt(Variance);
 
-        public double Median => throw new NotImplementedException();//TODO
+        public double Median
+        {
+            get
+            {
+                double[] CDF = new double[_probabilities.Length];
+                double sum = 0;
+                for (int i = 0; i < CDF.Length; i++)
+                {
+                    sum += _probabilities[i];
+                    CDF[i] = sum;
+                }
+                for (int i = 1; i < CDF.Length; i++)
+                {
+                    if (CDF[i - 1] < 0.5 && CDF[i] > 0.5)
+                        return i;
+                    if (CDF[i] == 0.5)
+                        return 2 * i + 1;
+                }
+                throw new InvalidOperationException("Median of this distribution is undefined");
+            }
+        }
 
         public double CumulativeDistribution(double x)
         {
