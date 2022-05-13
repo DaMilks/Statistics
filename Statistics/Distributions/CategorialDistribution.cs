@@ -14,10 +14,10 @@ namespace Statistics.Distributions
 
         public CategorialDistribution(int n)
         {
-            if(n <= 0)
+            if (n <= 0)
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _random = new();
-            _probabilities=new double[n];
+            _probabilities = new double[n];
             double k = 1 / n;
             for (int i = 0; i < n; i++)
                 _probabilities[i] = k;
@@ -25,7 +25,7 @@ namespace Statistics.Distributions
 
         public CategorialDistribution(double[] probabilities)
         {
-            if(!IsValidParameters(probabilities))
+            if (!IsValidParameters(probabilities))
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _probabilities = probabilities;
             _random = new();
@@ -36,25 +36,64 @@ namespace Statistics.Distributions
             _random = random;
         }
 
-        public int Mode => throw new NotImplementedException();
+        public int Mode
+        {
+            get
+            {
+                double max = _probabilities[0];
+                int num=0;
+                for (int i = 0; i < _probabilities.Length; i++)
+                {
+                    if (_probabilities[i]>max)
+                    {
+                        max= _probabilities[i];
+                        num = i;
+                    }
+                }
+                return num;
+            }
+        }
 
         public int Minimum => 0;
 
-        public int Maximum => _probabilities.Length-1;
+        public int Maximum => _probabilities.Length - 1;
 
         public Random Random => _random;
 
-        public double Mean => throw new NotImplementedException();
+        public double Mean
+        {
+            get
+            {
+                double sum = 0;
+                for (int i = 0; i < _probabilities.Length; i++)
+                {
+                    sum += i * _probabilities[i];
+                }
+                return sum;
+            }
+        }
 
-        public double Variance => throw new NotImplementedException();
+        public double Variance
+        {
+            get
+            {
+                double m = Median, sum = 0, r;
+                for (int i = 0; i < _probabilities.Length; i++)
+                {
+                    r = i - m;
+                    sum += r * r * _probabilities[i];
+                }
+                return sum;
+            }
+        }
+        public double StdDev => Math.Sqrt(Variance);
 
-        public double StdDev => throw new NotImplementedException();
-
-        public double Median => throw new NotImplementedException();
+        public double Median => throw new NotImplementedException();//TODO
 
         public double CumulativeDistribution(double x)
         {
             throw new NotImplementedException();
+            //TODO
         }
 
         public int MakeSample()
@@ -72,7 +111,9 @@ namespace Statistics.Distributions
 
         public double Probability(int x)
         {
-            throw new NotImplementedException();
+            if (x < 0 || x >= _probabilities.Length)
+                return 0;
+            else return (_probabilities[x]);
         }
     }
 }
