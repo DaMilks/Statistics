@@ -59,7 +59,15 @@ namespace Statistics.Distributions
 
         public int MakeSample()
         {
-            throw new NotImplementedException();
+            double r = _random.NextDouble();
+            double d = 0;
+            for (int i = 0; i < _probabilities.Length - 1; i++)
+            {
+                d += _probabilities[i];
+                if (r <= d)
+                    return i;
+            }
+            return _probabilities.Length - 1;
         }
 
         public double Probability(int x)
