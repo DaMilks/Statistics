@@ -18,7 +18,7 @@
         /// </summary>
         int Maximum { get; }
         /// <summary>
-        /// Computes the probability mass functrion
+        /// Computes the probability mass function
         /// </summary>
         /// <param name="x">The location in the domain where we want to evaluate the probability mass function.</param>
         /// <returns>the probability mass at location <paramref name="x"/>.</returns>

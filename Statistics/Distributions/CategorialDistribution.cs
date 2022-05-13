@@ -3,13 +3,14 @@ using System.Linq;
 
 namespace Statistics.Distributions
 {
+    /// Discrete Univariate Categorical distribution(also Discrete distribution)
     public class CategorialDistribution : IDiscreteDistribution
     {
         private readonly double[] _probabilities;
         private readonly Random _random;
         private static bool IsValidParameters(double[] probabilities)
         {
-            return probabilities.Sum() == 1.0;
+            return probabilities.Sum() == 1.0&&probabilities.Min()>0;
         }
         private static double[] SearchCDF(double[] probabilities)
         {
@@ -21,7 +22,10 @@ namespace Statistics.Distributions
             }
             return CDF;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Categorical class
+        /// </summary>
+        /// <param name="n">Number of equiprobable outcomes</param>
         public CategorialDistribution(int n)
         {
             if (n <= 0)
@@ -32,7 +36,10 @@ namespace Statistics.Distributions
             for (int i = 0; i < n; i++)
                 _probabilities[i] = k;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Categorical class.
+        /// </summary>
+        /// <param name="probabilities">An array of nonnegative values</param>
         public CategorialDistribution(double[] probabilities)
         {
             if (!IsValidParameters(probabilities))
@@ -40,12 +47,18 @@ namespace Statistics.Distributions
             _probabilities = probabilities;
             _random = new();
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Categorical class.
+        /// </summary>
+        /// <param name="probabilities">An array of nonnegative values</param>
+        /// <param name="random">randomsource</param>
         public CategorialDistribution(double[] probabilities, Random random) : this(probabilities)
         {
             _random = random;
         }
-
+        /// <summary>
+        /// Gets the mode of the distribution.
+        /// </summary>
         public int Mode
         {
             get
@@ -63,13 +76,21 @@ namespace Statistics.Distributions
                 return num;
             }
         }
-
+        /// <summary>
+        /// Gets the smallest element in the domain of the distribution.
+        /// </summary>
         public int Minimum => 0;
-
+        /// <summary>
+        /// Gets the largest element in the domain of the distribution.
+        /// </summary>
         public int Maximum => _probabilities.Length - 1;
-
+        /// <summary>
+        /// Gets the random number generator which is used to make random samples.
+        /// </summary>
         public Random Random => _random;
-
+        /// <summary>
+        /// Gets the mean of the distribution.
+        /// </summary>
         public double Mean
         {
             get
@@ -82,7 +103,9 @@ namespace Statistics.Distributions
                 return sum;
             }
         }
-
+        /// <summary>
+        /// Gets the variance of the distribution.
+        /// </summary>
         public double Variance
         {
             get
@@ -96,8 +119,14 @@ namespace Statistics.Distributions
                 return sum;
             }
         }
+        /// <summary>
+        /// Gets the standard deviation of the distribution.
+        /// </summary>
         public double StdDev => Math.Sqrt(Variance);
-
+        /// <summary>
+        /// Gets the median of the distribution.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Median of this distribution is undefined"</exception>
         public double Median
         {
             get
@@ -113,7 +142,11 @@ namespace Statistics.Distributions
                 throw new InvalidOperationException("Median of this distribution is undefined");
             }
         }
-
+        /// <summary>
+        /// Computes the cumulative distribution (CDF) of the distribution at x
+        /// </summary>
+        /// /// <param name="x">The location at which to compute the cumulative distribution function.</param>
+        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
         public double CumulativeDistribution(double x)
         {
             if (x < 0)
@@ -128,7 +161,10 @@ namespace Statistics.Distributions
             double[] CDF = SearchCDF(_probabilities);
             return CDF[(int)Math.Floor(x)];
         }
-
+        /// <summary>
+        /// Make a random sample from the distribution.
+        /// </summary>
+        /// <returns>a sample from the distribution.</returns>
         public int MakeSample()
         {
             double r = _random.NextDouble();
@@ -141,7 +177,11 @@ namespace Statistics.Distributions
             }
             return _probabilities.Length - 1;
         }
-
+        /// <summary>
+        /// Computes the probability mass function
+        /// </summary>
+        /// <param name="x">The location in the domain where we want to evaluate the probability mass function.</param>
+        /// <returns>the probability mass at location <paramref name="x"/>.</returns>
         public double Probability(int x)
         {
             if (x < 0 || x >= _probabilities.Length)
