@@ -39,5 +39,22 @@ namespace Statistics.Tests.DistributionsTests
                 Assert.That(n.Maximum, Is.EqualTo(max));
             });
         }
+        /// <summary>
+        /// Can make sample of uniform distribution
+        /// </summary>
+        /// /// <param name="min">Minimum value.</param>
+        /// <param name="max">Maximum value.</param>
+        [Test]
+        [TestCase(-1, 1)]
+        public void MakeSampleTest(double min, double max)
+        {
+            ContiniousUniformDistribution n = new(min, max);
+            double sample = n.MakeSample();
+            Assert.Multiple(() =>
+            {
+                Assert.That(double.IsNaN(sample), Is.False);
+                Assert.That(sample <= max && sample >= min, Is.True);
+            });
+        }
     }
 }
