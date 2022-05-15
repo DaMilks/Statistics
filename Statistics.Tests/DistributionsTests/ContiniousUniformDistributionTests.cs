@@ -40,6 +40,19 @@ namespace Statistics.Tests.DistributionsTests
             });
         }
         /// <summary>
+        /// Uniform distribution throw exception with invalid parameters.
+        /// </summary>
+        /// <param name="min">Minimum value.</param>
+        /// <param name="max">Maximum value.</param>
+        [TestCase(double.NaN, 1)]
+        [TestCase(1, double.NaN)]
+        [TestCase(double.NaN, double.NaN)]
+        [TestCase(0, -1)]
+        public void UniformDistributionInvalidParameters(double min, double max)
+        {
+            Assert.That(() => new NormalDistribution(min, max), Throws.ArgumentException);
+        }
+        /// <summary>
         /// Can make sample of uniform distribution
         /// </summary>
         /// /// <param name="min">Minimum value.</param>
