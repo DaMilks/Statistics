@@ -143,6 +143,11 @@ namespace Statistics.Distributions
             }
         }
         /// <summary>
+        /// Gets the array of probabilities of the distribution.
+        /// </summary>
+        public double[] Probabilities => _probabilities;
+
+        /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x
         /// </summary>
         /// /// <param name="x">The location at which to compute the cumulative distribution function.</param>

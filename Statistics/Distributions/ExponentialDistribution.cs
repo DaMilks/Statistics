@@ -71,7 +71,9 @@ namespace Statistics.Distributions
         /// Gets the median of the distribution.
         /// </summary>
         public double Median => Math.Log(2) / _rate;
-
+        /// <summary>
+        /// Gets the rate of the exponential distribution.
+        /// </summary>
         public double Rate => _rate;
 
         /// <summary>
