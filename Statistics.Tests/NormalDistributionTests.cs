@@ -3,6 +3,7 @@ using Statistics.Distributions;
 
 namespace Statistics.Tests
 {
+    [TestFixture]
     public class NormalDistributionTests
     {
         /// <summary>
@@ -38,6 +39,15 @@ namespace Statistics.Tests
                 Assert.That(n.Mean, Is.EqualTo(expected));
                 Assert.That(n.StdDev, Is.EqualTo(sigma));
             });
+        }
+        /// <summary>
+        /// Can make sample of normal distribution
+        /// </summary>
+        [Test]
+        public void MakeSampleTest()
+        {
+            ICountiniousDistribusion n = new NormalDistribution();
+            n.MakeSample();
         }
     }
 }
