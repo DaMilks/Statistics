@@ -71,6 +71,9 @@ namespace Statistics.Distributions
         /// Gets the median of the distribution.
         /// </summary>
         public double Median => Math.Log(2) / _rate;
+
+        public double Rate => _rate;
+
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>
