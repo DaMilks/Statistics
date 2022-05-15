@@ -72,6 +72,11 @@ namespace Statistics.Distributions
         /// </summary>
         public double Median => Math.Log(2) / _rate;
         /// <summary>
+        /// Gets the rate of the exponential distribution.
+        /// </summary>
+        public double Rate => _rate;
+
+        /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>
         /// /// <param name="x">The location at which to compute the cumulative distribution function.</param>
