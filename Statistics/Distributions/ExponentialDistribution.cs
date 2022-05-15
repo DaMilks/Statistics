@@ -27,7 +27,7 @@ namespace Statistics.Distributions
         /// </summary>
         public ExponentialDistribution(double rate)
         {
-            if(!IsValidParameters(rate))
+            if (!IsValidParameters(rate))
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _rate = rate;
             _random = new();

@@ -27,7 +27,7 @@ namespace Statistics.Distributions
         /// </summary>
         public ContiniousUniformDistribution(double min, double max)
         {
-            if(!IsValidParameters(min,max))
+            if (!IsValidParameters(min, max))
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _min = min;
             _max = max;

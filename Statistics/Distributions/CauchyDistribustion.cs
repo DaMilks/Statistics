@@ -85,7 +85,7 @@ namespace Statistics.Distributions
         /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
         public double CumulativeDistribution(double x)
         {
-            return (1/Math.PI) * Math.Atan((x - _location) / _scale) + 0.5;
+            return (1 / Math.PI) * Math.Atan((x - _location) / _scale) + 0.5;
         }
         /// <summary>
         /// Computes the probability density of the distribution (PDF)

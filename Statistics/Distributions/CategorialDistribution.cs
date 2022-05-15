@@ -10,7 +10,7 @@ namespace Statistics.Distributions
         private readonly Random _random;
         private static bool IsValidParameters(double[] probabilities)
         {
-            return probabilities.Sum() == 1.0&&probabilities.Min()>0;
+            return probabilities.Sum() == 1.0 && probabilities.Min() > 0;
         }
         private static double[] SearchCDF(double[] probabilities)
         {
@@ -64,12 +64,12 @@ namespace Statistics.Distributions
             get
             {
                 double max = _probabilities[0];
-                int num=0;
+                int num = 0;
                 for (int i = 0; i < _probabilities.Length; i++)
                 {
-                    if (_probabilities[i]>max)
+                    if (_probabilities[i] > max)
                     {
-                        max= _probabilities[i];
+                        max = _probabilities[i];
                         num = i;
                     }
                 }
