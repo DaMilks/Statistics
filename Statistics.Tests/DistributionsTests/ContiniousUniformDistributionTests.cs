@@ -19,5 +19,25 @@ namespace Statistics.Tests.DistributionsTests
                     Assert.That(n.Maximum, Is.EqualTo(1.0));
                 });
             }
+        [Test]
+        /// <summary>
+        /// Can create uniform distribution instance
+        /// </summary>
+        /// <param name="min">Minimum value.</param>
+        /// <param name="max">Maximum value.</param>
+        [TestCase(-1, 1)]
+        [TestCase(-5, -1)]
+        [TestCase(1, 10)]
+        [TestCase(1.0, 5.0)]
+        [TestCase(0, double.PositiveInfinity)]
+        public void CanCreateNormal(double min, double max)
+        {
+            ContiniousUniformDistribution n = new(min, max);
+            Assert.Multiple(() =>
+            {
+                Assert.That(n.Minimum, Is.EqualTo(min));
+                Assert.That(n.Maximum, Is.EqualTo(max));
+            });
+        }
     }
 }
