@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Statistics.Distributions;
 
-namespace Statistics.Tests
+namespace Statistics.Tests.DistributionsTests
 {
     [TestFixture]
     public class NormalDistributionTests
