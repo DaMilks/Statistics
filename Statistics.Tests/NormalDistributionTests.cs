@@ -41,13 +41,26 @@ namespace Statistics.Tests
             });
         }
         /// <summary>
+        /// Normal distribution throw exception with invalid parameters.
+        /// </summary>
+        /// <param name="expected">Mean value.</param>
+        /// <param name="sigma">Standard deviation value.</param>
+        [TestCase(double.NaN, 1)]
+        [TestCase(1, double.NaN)]
+        [TestCase(double.NaN, double.NaN)]
+        [TestCase(-1, 0)]
+        public void NormalDistributionInvalidParameters(double sigma, double expected)
+        {
+            Assert.That(() => new NormalDistribution(sigma, expected), Throws.ArgumentException);
+        }
+        /// <summary>
         /// Can make sample of normal distribution
         /// </summary>
         [Test]
         public void MakeSampleTest()
         {
             ICountiniousDistribusion n = new NormalDistribution();
-            n.MakeSample();
+            Assert.That(double.IsNaN(n.MakeSample()), Is.False);
         }
     }
 }
