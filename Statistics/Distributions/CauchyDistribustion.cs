@@ -70,6 +70,15 @@ namespace Statistics.Distributions
         /// </summary>
         public double Median => _location;
         /// <summary>
+        /// Gets the location of the Cauchy distribution.
+        /// </summary>
+        public double Location => _location;
+        /// <summary>
+        /// Gets the scale of the Cauchy distribution.
+        /// </summary>
+        public double Scale => _scale;
+
+        /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>
         /// /// <param name="x">The location at which to compute the cumulative distribution function.</param>
