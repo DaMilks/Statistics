@@ -5,9 +5,23 @@ namespace Statistics.Tests
 {
     public class NormalDistributionTests
     {
+        /// <summary>
+        /// Can create standard distribution instance
+        /// </summary>
+        [Test]
+        public void CanCreateStandardNormal()
+        {
+            IDistribution n = new NormalDistribution();
+            Assert.Multiple(() =>
+            {
+                Assert.That(n.Mean, Is.EqualTo(0.0));
+                Assert.That(n.StdDev, Is.EqualTo(1.0));
+            });
+        }
+
         [Test]
         /// <summary>
-        /// Can create normal distribution
+        /// Can create normal distribution instance
         /// </summary>
         /// <param name="expected">Mean value.</param>
         /// <param name="sigma">Standard deviation value.</param>
