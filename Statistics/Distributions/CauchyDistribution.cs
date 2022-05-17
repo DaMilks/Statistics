@@ -11,7 +11,7 @@ namespace Statistics.Distributions
         private readonly Random _random;
         private static bool IsValidParameters(double location, double scale)
         {
-            return scale > 0 && double.IsNaN(location);
+            return scale > 0 && !double.IsNaN(location);
         }
         /// <summary>
         /// Initializes a new instance of the Cauchy class with the location(X0)=0 and the scale(γ)=1
