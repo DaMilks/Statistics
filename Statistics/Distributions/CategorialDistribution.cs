@@ -23,6 +23,12 @@ namespace Statistics.Distributions
             return CDF;
         }
         /// <summary>
+        /// Initializes a new standard instance of the Categorical class
+        /// </summary>
+        public CategorialDistribution() : this(2)
+        { 
+        }
+        /// <summary>
         /// Initializes a new instance of the Categorical class
         /// </summary>
         /// <param name="n">Number of equiprobable outcomes</param>
@@ -32,7 +38,7 @@ namespace Statistics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _random = new();
             _probabilities = new double[n];
-            double k = 1 / n;
+            double k = 1.0 / n;
             for (int i = 0; i < n; i++)
                 _probabilities[i] = k;
         }
