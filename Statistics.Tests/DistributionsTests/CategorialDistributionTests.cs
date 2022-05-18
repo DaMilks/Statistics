@@ -48,6 +48,7 @@ namespace Statistics.Tests.DistributionsTests
                 Assert.That(n.Probabilities, Is.EqualTo(probabilities));
             });
         }
+        [Test]
         /// <summary>
         /// Categorial distribution throw exception with invalid array of probabilities
         /// </summary>
@@ -60,6 +61,7 @@ namespace Statistics.Tests.DistributionsTests
         {
             Assert.That(() => new CategorialDistribution(probabilities), Throws.ArgumentException);
         }
+        [Test]
         /// <summary>
         /// Categorial distribution throw exception with invalid number of options
         /// </summary>
@@ -69,6 +71,15 @@ namespace Statistics.Tests.DistributionsTests
         public void CategorialDistributionByNumberInvalid(int numberOfOptions)
         {
             Assert.That(() => new CategorialDistribution(numberOfOptions), Throws.ArgumentException);
+        }
+        [Test]
+        /// <summary>
+        /// Categorial can make sample test
+        /// </summary>
+        public void CategorialDistributionMakeSample()
+        {
+            CategorialDistribution n = new(new double[] {0.5,0.5}, new Random(0));
+            Assert.That(n.MakeSample(), Is.InRange(0, 1));
         }
     }
 }
