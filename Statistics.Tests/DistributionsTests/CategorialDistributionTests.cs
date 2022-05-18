@@ -56,9 +56,19 @@ namespace Statistics.Tests.DistributionsTests
         [TestCase(new double[] { -1d, 2d })]
         [TestCase(new double[] { 0.2d, 0.3d })]
         [TestCase(new double[] { 0.7d, 0.6d })]
-        public void CategorialDistributionByProbabilitiesInvalidParameters(double[] probabilities)
+        public void CategorialDistributionByProbabilitiesInvalid(double[] probabilities)
         {
             Assert.That(() => new CategorialDistribution(probabilities), Throws.ArgumentException);
+        }
+        /// <summary>
+        /// Categorial distribution throw exception with invalid number of options
+        /// </summary>
+        /// <param name="numberOfOptions">number of options value</param>
+        [TestCase(-1)]
+        [TestCase(0)]
+        public void CategorialDistributionByNumberInvalid(int numberOfOptions)
+        {
+            Assert.That(() => new CategorialDistribution(numberOfOptions), Throws.ArgumentException);
         }
     }
 }
