@@ -34,7 +34,7 @@ namespace Statistics.Tests.DistributionsTests
         }
         [Test]
         /// <summary>
-        /// Can create categorial distribution instance by array of probabylities
+        /// Can create categorial distribution instance by array of probabilities
         /// </summary>
         [TestCase(new double[] {0.5, 0.5})]
         [TestCase(new double[] { 0.2, 0.1,0.7 })]
@@ -47,6 +47,18 @@ namespace Statistics.Tests.DistributionsTests
                 Assert.That(n.Probabilities, !Is.Null);
                 Assert.That(n.Probabilities, Is.EqualTo(probabilities));
             });
+        }
+        /// <summary>
+        /// Categorial distribution throw exception with invalid array of probabilities
+        /// </summary>
+        /// <param name="probabilities">array of probabilities of distribution</param>
+        [TestCase(new double[] { 0d, 1d })]
+        [TestCase(new double[] { -1d, 2d })]
+        [TestCase(new double[] { 0.2d, 0.3d })]
+        [TestCase(new double[] { 0.7d, 0.6d })]
+        public void CategorialDistributionByProbabilitiesInvalidParameters(double[] probabilities)
+        {
+            Assert.That(() => new CategorialDistribution(probabilities), Throws.ArgumentException);
         }
     }
 }

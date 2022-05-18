@@ -10,7 +10,7 @@ namespace Statistics.Distributions
         private readonly Random _random;
         private static bool IsValidParameters(double[] probabilities)
         {
-            return probabilities.Sum() == 1.0 && probabilities.Min() > 0;
+            return probabilities.Sum() == 1d && probabilities.Min() > 0;
         }
         private static double[] SearchCDF(double[] probabilities)
         {
@@ -38,7 +38,7 @@ namespace Statistics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             _random = new();
             _probabilities = new double[n];
-            double k = 1.0 / n;
+            double k = 1d / n;
             for (int i = 0; i < n; i++)
                 _probabilities[i] = k;
         }
