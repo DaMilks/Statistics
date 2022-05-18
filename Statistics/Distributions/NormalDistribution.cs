@@ -5,13 +5,13 @@ namespace Statistics.Distributions
     /// <summary>
     /// Normal distribution(Gaussian distribution)
     /// </summary>
-    public class NormalDistribution : ICountiniousDistribusion
+    public class NormalDistribution : IContiniousDistribusion
     {
         private readonly double _sigma, _expected;
         private readonly Random _random;
         private double NormalValue()
         {
-            ICountiniousDistribusion d = new ContiniousUniformDistribution(-1, 1, _random);
+            IContiniousDistribusion d = new ContiniousUniformDistribution(-1, 1, _random);
             double v, u = 0, s = 2;
             while (s < 0 | s > 1)
             {

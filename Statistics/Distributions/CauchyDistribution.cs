@@ -5,24 +5,24 @@ namespace Statistics.Distributions
     /// <summary>
     /// Cauchy distribution
     /// </summary>
-    public class CauchyDistribustion : ICountiniousDistribusion
+    public class CauchyDistribution : IContiniousDistribusion
     {
         private readonly double _location, _scale;
         private readonly Random _random;
         private static bool IsValidParameters(double location, double scale)
         {
-            return scale > 0 && double.IsNaN(location);
+            return scale > 0 && !double.IsNaN(location);
         }
         /// <summary>
         /// Initializes a new instance of the Cauchy class with the location(X0)=0 and the scale(γ)=1
         /// </summary>
-        public CauchyDistribustion() : this(0, 1)
+        public CauchyDistribution() : this(0, 1)
         {
         }
         /// <summary>
         /// Initializes a new instance of the Cauchy class with given location(X0) and scale(γ) values
         /// </summary>
-        public CauchyDistribustion(double location, double scale)
+        public CauchyDistribution(double location, double scale)
         {
             if (!IsValidParameters(location, scale))
                 throw new ArgumentException("Invalid parametrization for the distribution.");
@@ -33,7 +33,7 @@ namespace Statistics.Distributions
         /// <summary>
         /// Initializes a new instance of the Cauchy class with given location(X0) and scale(γ) values and randomsourse
         /// </summary>
-        public CauchyDistribustion(double location, double scale, Random random) : this(location, scale)
+        public CauchyDistribution(double location, double scale, Random random) : this(location, scale)
         {
             _random = random;
         }
