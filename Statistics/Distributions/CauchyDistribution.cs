@@ -5,7 +5,7 @@ namespace Statistics.Distributions
     /// <summary>
     /// Cauchy distribution
     /// </summary>
-    public class CauchyDistribution : ICountiniousDistribusion
+    public class CauchyDistribution : IContiniousDistribusion
     {
         private readonly double _location, _scale;
         private readonly Random _random;

@@ -5,7 +5,7 @@ namespace Statistics.Distributions
     /// <summary>
     /// Continuous Uniform distribution.
     /// </summary>
-    public class ContiniousUniformDistribution : ICountiniousDistribusion
+    public class ContiniousUniformDistribution : IContiniousDistribusion
     {
         private readonly double _min, _max;
         private readonly Random _random;

@@ -3,7 +3,7 @@
     /// <summary>
     /// Countinious Probability Distribution.
     /// </summary>
-    public interface ICountiniousDistribusion : IDistribution
+    public interface IContiniousDistribusion : IDistribution
     {
         /// <summary>
         /// Gets the mode of the distribution.
