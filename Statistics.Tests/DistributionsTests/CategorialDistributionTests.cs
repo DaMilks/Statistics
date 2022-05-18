@@ -36,8 +36,8 @@ namespace Statistics.Tests.DistributionsTests
         /// <summary>
         /// Can create categorial distribution instance by array of probabilities
         /// </summary>
-        [TestCase(new double[] {0.5, 0.5})]
-        [TestCase(new double[] { 0.2, 0.1,0.7 })]
+        [TestCase(new double[] { 0.5, 0.5 })]
+        [TestCase(new double[] { 0.2, 0.1, 0.7 })]
         [TestCase(new double[] { 1d })]
         public void CanCreateByProbabylitiesCategorialDistribution(double[] probabilities)
         {
@@ -78,7 +78,7 @@ namespace Statistics.Tests.DistributionsTests
         /// </summary>
         public void CategorialDistributionMakeSample()
         {
-            CategorialDistribution n = new(new double[] {0.5,0.5}, new Random(0));
+            CategorialDistribution n = new(new double[] { 0.5, 0.5 }, new Random(0));
             Assert.That(n.MakeSample(), Is.InRange(0, 1));
         }
     }
