@@ -29,9 +29,24 @@ namespace Statistics.Tests.DistributionsTests
             Assert.Multiple(() =>
             {
                 Assert.That(n.Probabilities, !Is.Null);
-                Assert.That(n.Probabilities[0], Is.EqualTo(1.0/numberOfOptions));
+                Assert.That(n.Probabilities[0], Is.EqualTo(1d / numberOfOptions));
             });
         }
-
+        [Test]
+        /// <summary>
+        /// Can create categorial distribution instance by array of probabylities
+        /// </summary>
+        [TestCase(new double[] {0.5, 0.5})]
+        [TestCase(new double[] { 0.2, 0.1,0.7 })]
+        [TestCase(new double[] { 1d })]
+        public void CanCreateByProbabylitiesCategorialDistribution(double[] probabilities)
+        {
+            CategorialDistribution n = new(probabilities);
+            Assert.Multiple(() =>
+            {
+                Assert.That(n.Probabilities, !Is.Null);
+                Assert.That(n.Probabilities, Is.EqualTo(probabilities));
+            });
+        }
     }
 }
