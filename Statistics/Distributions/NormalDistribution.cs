@@ -46,7 +46,7 @@ namespace Statistics.Distributions
             _random = new();
         }
         /// <summary>
-        /// Initializes a new instance of the Normal with givaen sigma and expected values
+        /// Initializes a new instance of the Normal with given sigma and expected values
         /// </summary>
         public NormalDistribution(double sigma, double expected)
         {
@@ -119,9 +119,9 @@ namespace Statistics.Distributions
             return Math.Exp(-0.5 * d * d) / (Math.Sqrt(2 * Math.PI) * _sigma);
         }
         /// <summary>
-        /// Makes a random sample from Normal distribution.
+        /// Makes a random sample from Laplace distribution.
         /// </summary>
-        /// <returns>a sample from Normal distribution.</returns>
+        /// <returns>a sample from Laplace distribution.</returns>
         public double MakeSample()
         {
             return _expected + _sigma * NormalValue();
