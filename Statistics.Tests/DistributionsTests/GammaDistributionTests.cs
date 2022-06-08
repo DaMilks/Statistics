@@ -23,32 +23,32 @@ namespace Statistics.Tests.DistributionsTests
         /// <summary>
         /// Can create Gamma distribution instance
         /// </summary>
-        /// <param name="location">location of distribution.</param>
+        /// <param name="shape">location of distribution.</param>
         /// <param name="scale">scale of distribution.</param>
         [TestCase(1, 1)]
         [TestCase(1.0, 5.0)]
         [TestCase(2, double.PositiveInfinity)]
-        public void CanCreateGamma(double location, double scale)
+        public void CanCreateGamma(double shape, double scale)
         {
-            GammaDistribution n = new(location, scale);
+            GammaDistribution n = new(shape, scale);
             Assert.Multiple(() =>
             {
-                Assert.That(n.Shape, Is.EqualTo(location));
+                Assert.That(n.Shape, Is.EqualTo(shape));
                 Assert.That(n.Scale, Is.EqualTo(scale));
             });
         }
         /// <summary>
         /// Gamma distribution throw exception with invalid parameters.
         /// </summary>
-        /// <param name="location">location of distribution value.</param>
+        /// <param name="shape">location of distribution value.</param>
         /// <param name="scale">scale of distribution value.</param>
         [TestCase(-1, 1)]
         [TestCase(1, -1)]
         [TestCase(0, 1)]
         [TestCase(1, 0)]
-        public void GammaDistributionInvalidParameters(double location, double scale)
+        public void GammaDistributionInvalidParameters(double shape, double scale)
         {
-            Assert.That(() => new GammaDistribution(location, scale), Throws.ArgumentException);
+            Assert.That(() => new GammaDistribution(shape, scale), Throws.ArgumentException);
         }
         /// <summary>
         /// Can make sample of Gamma distribution
