@@ -2,6 +2,9 @@
 
 namespace Statistics.Distributions
 {
+    /// <summary>
+    /// Gamma distribution
+    /// </summary>
     public class GammaDistribution : IContiniousDistribusion
     {
         private readonly double _shape, _scale;
@@ -11,7 +14,9 @@ namespace Statistics.Distributions
         {
             return shape > 0 && scale > 0;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Gamma class with given shape and scale values
+        /// </summary>
         public GammaDistribution(double shape, double scale)
         {
             if (!IsValidIsValidParameters(shape, scale))
@@ -20,21 +25,29 @@ namespace Statistics.Distributions
             _scale = scale;
             _random = new();
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Gamma class with given shape, scale values and randomsource
+        /// </summary>
         public GammaDistribution(double shape, double scale, Random random) : this(shape, scale)
         {
             _random = random;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the Gamma class with given shape value and scale=1
+        /// </summary>
         public GammaDistribution(double shape) : this(shape, 1) { }
-
+        /// <summary>
+        /// Initializes a new instance of the Gamma class with the shape=1 and the scale=1
+        /// </summary>
         public GammaDistribution()
         {
             _shape = 1;
             _scale = 1;
             _random = new();
         }
-
+        /// <summary>
+        /// Gets the mode of the distribution.
+        /// </summary>
         public double Mode
         {
             get
@@ -44,13 +57,21 @@ namespace Statistics.Distributions
                 return (_shape - 1) * _scale;
             }
         }
-
+        /// <summary>
+        /// Gets the smallest element which can be maked
+        /// </summary>
         public double Minimum => 0;
-
+        /// <summary>
+        /// Gets the largest element which can be maked
+        /// </summary>
         public double Maximum => double.PositiveInfinity;
-
+        /// <summary>
+        /// Gets the random number generator which is used to make random samples.
+        /// </summary>
         public Random Random => _random;
-
+        /// <summary>
+        /// Gets the mean of the distribution.
+        /// </summary>
         public double Mean
         {
             get
@@ -60,7 +81,9 @@ namespace Statistics.Distributions
                 return _shape* _scale;
             }
         }
-
+        /// <summary>
+        /// Gets the variance of the distribution.
+        /// </summary>
         public double Variance
         {
             get
@@ -70,7 +93,9 @@ namespace Statistics.Distributions
                 return _shape* _scale*_scale;
             }
         }
-
+        /// <summary>
+        /// Gets the standard deviation of the distribution.
+        /// </summary>
         public double StdDev
         {
             get
@@ -80,21 +105,37 @@ namespace Statistics.Distributions
                 return Math.Sqrt(_shape) * _scale;
             }
         }
-
+        /// <summary>
+        /// Gets the median of the distribution.
+        /// </summary>
         public double Median => throw new InvalidOperationException("Median of this distribution is undefined");
-
+        /// <summary>
+        /// Gets the shape of the Gamma distribution.
+        /// </summary>
         public double Shape => _shape;
-
+        /// <summary>
+        /// Gets the scale of the Gamma distribution.
+        /// </summary>
         public double Scale => _scale;
-
+        /// <summary>
+        /// Gets the rate of the Gamma distribution.
+        /// </summary>
         public double Rate => 1 / _scale;
-
+        /// <summary>
+        /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
+        /// </summary>
+        /// /// <param name="x">The location at which to compute the cumulative distribution function.</param>
+        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
         public double CumulativeDistribution(double x)
         {
             //need Gamma function
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Computes the probability density of the distribution (PDF)
+        /// </summary>
+        /// <param name="x">The location at which to compute the density.</param>
+        /// <returns>the density at <paramref name="x"/>.</returns>
         public double Density(double x)
         {
             if (_scale==double.Epsilon)
@@ -109,7 +150,10 @@ namespace Statistics.Distributions
             //TODO: Realized Gamma fuction
             return 0;
         }
-
+        ///<summary>
+        /// Makes a random sample from Gamma distribution.
+        /// </summary>
+        /// <returns>a sample from Gamma distribution.</returns>
         public double MakeSample()
         {
             if (_scale==double.Epsilon)
