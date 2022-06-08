@@ -5,7 +5,7 @@ namespace Statistics.Distributions
     /// <summary>
     /// Exponential distribution
     /// </summary>
-    public class ExponentialDistribution : IContiniousDistribusion
+    public class ExponentialDistribution : IContiniousDistribution
 
     {
         private readonly double _rate;

@@ -5,7 +5,7 @@ namespace Statistics.Distributions
     /// <summary>
     /// Gamma distribution
     /// </summary>
-    public class GammaDistribution : IContiniousDistribusion
+    public class GammaDistribution : IContiniousDistribution
     {
         private readonly double _shape, _scale;
         private readonly Random _random;

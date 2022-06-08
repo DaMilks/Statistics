@@ -5,7 +5,7 @@ namespace Statistics.Distributions
     /// <summary>
     /// Normal distribution(Gaussian distribution)
     /// </summary>
-    public class LaplaceDistribution : IContiniousDistribusion
+    public class LaplaceDistribution : IContiniousDistribution
     {
         private readonly double _location, _scale;
 

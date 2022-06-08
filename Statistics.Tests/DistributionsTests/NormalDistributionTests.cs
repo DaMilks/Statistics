@@ -59,7 +59,7 @@ namespace Statistics.Tests.DistributionsTests
         [Test]
         public void MakeSampleTest()
         {
-            IContiniousDistribusion n = new NormalDistribution();
+            IContiniousDistribution n = new NormalDistribution();
             Assert.That(double.IsNaN(n.MakeSample()), Is.False);
         }
     }
