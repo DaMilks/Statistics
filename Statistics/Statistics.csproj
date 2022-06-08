@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Analytics\" />
+    <Compile Remove="Analytics\**" />
+    <EmbeddedResource Remove="Analytics\**" />
+    <None Remove="Analytics\**" />
   </ItemGroup>
 
 </Project>
