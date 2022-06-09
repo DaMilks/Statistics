@@ -87,5 +87,60 @@ namespace Statistics
             }
             return max;
         }
+
+        public static double Mean(double[] values)
+        {
+            double sum = 0;
+            foreach (double value in values)
+                sum += value;
+            return sum / values.Length;
+        }
+
+        public static double Mean(int[] values)
+        {
+            double sum = 0d;
+            foreach (int value in values)
+                sum += value;
+            return sum / values.Length;
+        }
+
+        public static double Variance(double[] values)
+        {
+            double variance = 0;
+            double temp = values[0];
+            double diff;
+            for (int i = 1; i < values.Length; i++)
+            {
+                temp += values[i];
+                diff = ((i + 1) * values[i]) - temp;
+                variance += (diff * diff) / ((i + 1d) * i);
+            }
+
+            return variance / (values.Length - 1);
+        }
+
+        public static double Variance(int[] values)
+        {
+            double variance = 0;
+            double temp = values[0];
+            double diff;
+            for (int i = 1; i < values.Length; i++)
+            {
+                temp += values[i];
+                diff = ((i + 1) * values[i]) - temp;
+                variance += (diff * diff) / ((i + 1d) * i);
+            }
+
+            return variance / (values.Length - 1);
+        }
+
+        public static double StdDev(double[] values)
+        {
+            return Math.Sqrt(Variance(values));
+        }
+        public static double StdDev(int[] values)
+        {
+            return Math.Sqrt(Variance(values));
+        }
     }
 }
