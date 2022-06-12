@@ -4,6 +4,10 @@ namespace Statistics
 {
     public static class Analytics
     {
+        /// <summary>
+        /// Returns the smallest value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static int Minimum(int[] values)
         {
             int min = values[0];
@@ -12,7 +16,10 @@ namespace Statistics
                     min = value;
             return min;
         }
-
+        /// <summary>
+        /// Returns the smallest absolute value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static int MinimumAbs(int[] values)
         {
             int min = 0;
@@ -24,7 +31,10 @@ namespace Statistics
             }
             return min;
         }
-
+        /// <summary>
+        /// Returns the smallest value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Minimum(double[] values)
         {
             double min = values[0];
@@ -33,7 +43,10 @@ namespace Statistics
                     min = value;
             return min;
         }
-
+        /// <summary>
+        /// Returns the smallest absolute value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double MinimumAbs(double[] values)
         {
             double min = 0;
@@ -45,7 +58,10 @@ namespace Statistics
             }
             return min;
         }
-
+        /// <summary>
+        /// Returns the largest value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Maximum(double[] values)
         {
             double max = values[0];
@@ -54,7 +70,10 @@ namespace Statistics
                     max = value;
             return max;
         }
-
+        /// <summary>
+        /// Returns the largest absolute value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double MaximumAbs(double[] values)
         {
             double max = Math.Abs(values[0]);
@@ -66,7 +85,10 @@ namespace Statistics
             }
             return max;
         }
-
+        /// <summary>
+        /// Returns the largest value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static int Maximum(int[] values)
         {
             int max = values[0];
@@ -75,7 +97,10 @@ namespace Statistics
                     max = value;
             return max;
         }
-
+        /// <summary>
+        /// Returns the largest absolute value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static int MaximumAbs(int[] values)
         {
             int max = Math.Abs(values[0]);
@@ -87,7 +112,10 @@ namespace Statistics
             }
             return max;
         }
-
+        /// <summary>
+        /// Estimates the arithmetic sample mean from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Mean(double[] values)
         {
             double sum = 0;
@@ -95,7 +123,10 @@ namespace Statistics
                 sum += value;
             return sum / values.Length;
         }
-
+        /// <summary>
+        /// Estimates the arithmetic sample mean from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Mean(int[] values)
         {
             double sum = 0d;
@@ -103,7 +134,10 @@ namespace Statistics
                 sum += value;
             return sum / values.Length;
         }
-
+        /// <summary>
+        /// Estimates the variance from unsorted array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Variance(double[] values)
         {
             double variance = 0;
@@ -118,7 +152,10 @@ namespace Statistics
 
             return variance / (values.Length - 1);
         }
-
+        /// <summary>
+        /// Estimates the variance from unsorted array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Variance(int[] values)
         {
             double variance = 0;
@@ -133,17 +170,26 @@ namespace Statistics
 
             return variance / (values.Length - 1);
         }
-
+        /// <summary>
+        /// Estimates the standard deviation from unsorted array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double StdDev(double[] values)
         {
             return Math.Sqrt(Variance(values));
         }
-
+        /// <summary>
+        /// Estimates the standard deviation from unsorted array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double StdDev(int[] values)
         {
             return Math.Sqrt(Variance(values));
         }
-
+        /// <summary>
+        /// Estimates the median value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Median(double[] values)
         {
             //TODO:Realize faster method https://ru.wikipedia.org/wiki/Алгоритм_выбора
@@ -152,7 +198,10 @@ namespace Statistics
             Array.Sort(valuesSorted);
             return MedianSorted(valuesSorted);
         }
-
+        /// <summary>
+        /// Estimates the median value from the sorted data array.
+        /// </summary>
+        /// <param name="values">Sample sorted array</param>
         public static double MedianSorted(double[] values)
         {
             int k = values.Length / 2;
@@ -160,7 +209,10 @@ namespace Statistics
                 return values[k];
             else return (values[k - 1] + values[k]) / 2d;
         }
-
+        /// <summary>
+        /// Estimates the median value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static double Median(int[] values)
         {
             int[] valuesSorted = new int[values.Length];
@@ -168,7 +220,10 @@ namespace Statistics
             Array.Sort(valuesSorted);
             return MedianSorted(valuesSorted);
         }
-
+        /// <summary>
+        /// Estimates the median value from the sorted data array.
+        /// </summary>
+        /// <param name="values">Sample sorted array</param>
         public static double MedianSorted(int[] values)
         {
             int k = values.Length / 2;
@@ -176,7 +231,10 @@ namespace Statistics
                 return values[k];
             else return (values[k - 1] + values[k]) / 2d;
         }
-
+        /// <summary>
+        /// Estimates the median value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
         public static int Mode(int[] values)
         {
             int min = Minimum(values),
@@ -207,7 +265,11 @@ namespace Statistics
             }
             return possibleValues[k];
         }
-
+        /// <summary>
+        /// Estimates the median value from the unsorted data array.
+        /// </summary>
+        /// <param name="values">Sample array, no sorting is assumed.</param>
+        /// <param name="possibleValues">Values ​​that can be contained in an sample array</param>
         public static int Mode(int[] values, int[] possibleValues)
         {
             int[] histogram = new int[possibleValues.Length];
