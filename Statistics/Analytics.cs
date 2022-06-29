@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace Statistics
 {
     public static class Analytics
@@ -194,7 +194,7 @@ namespace Statistics
         {
             //TODO:Realize faster method https://ru.wikipedia.org/wiki/Алгоритм_выбора
             double[] valuesSorted = new double[values.Length];
-            Array.Copy(values,valuesSorted, values.Length);
+            Array.Copy(values, valuesSorted, values.Length);
             Array.Sort(valuesSorted);
             return MedianSorted(valuesSorted);
         }
@@ -294,6 +294,159 @@ namespace Statistics
                 }
             }
             return possibleValues[k];
+        }
+
+        public static double FindPearson(double[] xvalues, double[] yvalues)
+        {
+            if (xvalues.Length != yvalues.Length)
+                throw new ArgumentException("Samples must be the same sizes");
+            double sumx = 0, sumy = 0, sumxx = 0, sumyy = 0, sumxy = 0;
+            int n = xvalues.Length;
+            for (int i = 0; i < n; i++)
+            {
+                sumx += xvalues[i];
+                sumy += yvalues[i];
+                sumxx += xvalues[i] * xvalues[i];
+                sumyy += yvalues[i] * yvalues[i];
+                sumxy += yvalues[i] * xvalues[i];
+            }
+            return (n * sumxy - sumx * sumy) / Math.Sqrt((n * sumxx - sumx * sumx) * (n * sumyy - sumy * sumy));
+        }
+
+        public static double FindPearson(int[] xvalues, int[] yvalues)
+        {
+            if (xvalues.Length != yvalues.Length)
+                throw new ArgumentException("Samples must be the same sizes");
+            int sumx = 0, sumy = 0, sumxx = 0, sumyy = 0, sumxy = 0, n = xvalues.Length;
+            for (int i = 0; i < n; i++)
+            {
+                sumx += xvalues[i];
+                sumy += yvalues[i];
+                sumxx += xvalues[i] * xvalues[i];
+                sumyy += yvalues[i] * yvalues[i];
+                sumxy += yvalues[i] * xvalues[i];
+            }
+            return (n * sumxy - sumx * sumy) * 1d / Math.Sqrt((n * sumxx - sumx * sumx) * (n * sumyy - sumy * sumy));
+        }
+
+        private static int[] FindDuplicatesRanks(double[] arr)
+        {
+            int n = arr.Length;
+            Stack<int> rezult = new();
+            double sample = arr[0];
+            int f = 1;
+            for (int i = 1; i < n; i++)
+            {
+                if (arr[i] == sample)
+                {
+                    f++;
+                }
+                else
+                {
+                    if (f != 1)
+                        rezult.Push(f);
+                    sample = arr[i];
+                    f = 1;
+                }
+            }
+            return rezult.ToArray();
+        }
+
+        private static void RemoveUnique(ref double[] arr)
+        {
+            int n = arr.Length;
+            List<double> tempA = new();
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (arr[i] != arr[i + 1])
+                {
+                    tempA.Add(arr[i]);
+                }
+            }
+            tempA.Add(arr[n - 1]);
+            arr = tempA.ToArray();
+        }
+
+        private static (double[] ranks, bool normalize) FindRanks(double[] values)
+        {
+            int n = values.Length;
+            double[] ranks = new double[n];
+            double[] temp = new double[n];
+            Array.Copy(values, temp, values.Length);
+            Array.Sort(temp);
+            RemoveUnique(ref temp);
+            for (int i = 0; i < values.Length; ++i)
+            {
+                ranks[i] = Array.BinarySearch(temp, values[i]) + 1;
+            }
+            return (ranks, temp.Length == values.Length);
+        }
+
+        private static double FindNormalizeCoeff(int[] dupeRanks)
+        {
+            int sum = 0;
+            foreach (int i in dupeRanks)
+                sum += i * i * i - i;
+            return sum / 12d;
+        }
+
+        private static double ReshapeRanks(double[] ranks)
+        {
+
+            int n = ranks.Length;
+            double[] temp = new double[n];
+            Array.Copy(ranks, temp, n);
+            Array.Sort(temp);
+            double[] sum_ranks = new double[n];
+            Array.Fill(sum_ranks, 0);
+            int[] num_sum_ranks = new int[n];
+            Array.Fill(num_sum_ranks, 0);
+            for (int i = 0; i < n; ++i)
+            {
+                int indx = Array.IndexOf(temp, ranks[i]);
+                while (indx < n && temp[indx] == ranks[i])
+                {
+                    sum_ranks[i] += (indx + 1);
+                    num_sum_ranks[i]++;
+                    indx++;
+                }
+            }
+            for (int i = 0; i < n; ++i)
+            {
+                ranks[i] = sum_ranks[i] * 1d / num_sum_ranks[i];
+            }
+            return FindNormalizeCoeff(FindDuplicatesRanks(temp));
+        }
+
+        public static double FindSpearman(double[] xvalues, double[] yvalues)
+        {
+            if (xvalues.Length != yvalues.Length)
+            {
+                throw new ArgumentException("Samples must be the same sizes");
+            }
+            int n = xvalues.Length;
+
+            (double[] xranks, bool normalizex) = FindRanks(xvalues);
+            (double[] yranks, bool normalizey) = FindRanks(yvalues);
+
+            double d1 = 0d, d2 = 0d;
+            if (!normalizex)
+            {
+                d1 = ReshapeRanks(xranks);
+            }
+            if (!normalizey)
+            {
+                d2 = ReshapeRanks(yranks);
+            }
+
+            double sum = 0;
+            double diff;
+            for (int i = 0; i < n; ++i)
+            {
+                diff = xranks[i] - yranks[i];
+                sum += diff * diff;
+            }
+            return 1.0 - ((6.0 * sum + d1 + d2) / (n * n * n - n));
         }
 
     }
